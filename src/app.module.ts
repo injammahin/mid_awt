@@ -4,8 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { UsersModule } from './registration/users.module';
-import { UsersController } from './registration/users.controller';
-import { UsersService } from './registration/users.service';
+// import { UsersController } from './registration/users.controller';
+// import { UsersService } from './registration/users.service';
 import { User } from './registration/user.entity';
 import { ManageCModule } from './manage-c/manage-c.module';
 
@@ -18,7 +18,7 @@ import { ManageCModule } from './manage-c/manage-c.module';
       port: 5433,
       username: 'postgres',
       password: '2023',
-      database: 'billing_automation',
+      database: 'registration',
       autoLoadEntities: true,
       entities: [User],
       synchronize: true,

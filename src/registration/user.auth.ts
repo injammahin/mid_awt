@@ -7,13 +7,28 @@ import { UsersService } from './users.service';
 @Injectable()
 export class AuthService {
   constructor(private usersService: UsersService) {}
-  async signup(name: string, phone: string, email: string, password: string) {
+  async signup(
+    name: string,
+    phone: string,
+    email: string,
+    password: string,
+    companyName: string,
+  ) {
     // See if email is in use
     const users = await this.usersService.find(email);
     if (users.length) {
-      throw new BadRequestException('email in use');
+      throw new BadRequestException('email already used');
     }
-    const user = await this.usersService.create(name, phone, email, password);
+
+    const user = await this.usersService.create(
+      name,
+      phone,
+      email,
+      password,
+      companyName,
+    );
+    throw new BadRequestException('data inserted');
+    // throw new BadRequestException('data inserted');
 
     // return the user
     return user;
@@ -25,7 +40,7 @@ export class AuthService {
       throw new NotFoundException('user not found');
     }
     if (user.password !== password) {
-      throw new BadRequestException('bad password');
+      throw new BadRequestException('wrong password');
     }
 
     return user;

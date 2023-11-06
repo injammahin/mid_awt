@@ -19,4 +19,7 @@ export class CreateUserDto {
 
   @IsString()
   password: string;
+
+  @IsNotEmpty()
+  companyName: string;
 }

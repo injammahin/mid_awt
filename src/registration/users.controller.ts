@@ -57,6 +57,7 @@ export class UsersController {
       body.phone,
       body.email,
       body.password,
+      body.companyName,
     );
   }
   @Post('/signin')

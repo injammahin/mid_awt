@@ -6,16 +6,22 @@ import { User } from './user.entity';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private repo: Repository<User>,
-  ) // private emailService: EmailService,
-  {}
+    @InjectRepository(User) private repo: Repository<User>, // private emailService: EmailService,
+  ) {}
 
-  create(name: string, phone: string, email: string, password: string) {
+  create(
+    name: string,
+    phone: string,
+    email: string,
+    password: string,
+    companyName: string,
+  ) {
     const user = this.repo.create({
       name,
       phone,
       email,
       password,
+      companyName,
     });
 
     return this.repo.save(user);
