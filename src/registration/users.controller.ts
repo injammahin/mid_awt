@@ -14,6 +14,7 @@ import { CreateUserDto } from 'src/dtos/create-user.dto';
 import { UsersService } from './users.service';
 import { AuthService } from './user.auth';
 import { LoginUserDto } from 'src/dtos/login-user.dto';
+import { UpdateDto } from 'src/dtos/update.dto';
 // import { LoginUserDto } from 'src/dtos/login-user.dto';
 // import { EmailDto } from 'src/dtos/email.dto';
 // import { UpdateDto } from 'src/dtos/update.dto';
@@ -82,8 +83,8 @@ export class UsersController {
   // updateMessage(@Param('id') id: string, @Body() body: MsgDto) {
   //   return this.messageService.update(parseInt(id), body);
   // }
-  // @Put('/:id')
-  // updateUser(@Param('id') id: string, @Body() body: UpdateDto) {
-  //   return this.usersService.update(parseInt(id), body);
-  // }
+  @Put('/:id')
+  updateUser(@Param('id') id: string, @Body() body: UpdateDto) {
+    return this.usersService.update(parseInt(id), body);
+  }
 }
