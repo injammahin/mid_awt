@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from 'src/dtos/create-user.dto';
 import { UsersService } from '../services/users.service';
-import { AuthService } from '../registration/user.auth';
+import { AuthService } from 'src/users/user.auth';
 import { LoginUserDto } from 'src/dtos/login-user.dto';
 import { UpdateDto } from 'src/dtos/update.dto';
 // import { LoginUserDto } from 'src/dtos/login-user.dto';
