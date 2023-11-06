@@ -27,7 +27,7 @@ export class AuthService {
       password,
       companyName,
     );
-    throw new BadRequestException('data inserted');
+    // throw new BadRequestException('data inserted');
     // throw new BadRequestException('data inserted');
 
     // return the user

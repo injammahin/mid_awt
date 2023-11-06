@@ -5,6 +5,9 @@ import { UsersService } from '../services/users.service';
 import { User } from '../entitys/user.entity';
 // import { Consultant } from '../consultant/consultant.entity';
 import { AuthService } from './user.auth';
+import { PaymentController } from 'src/controller/paymentdetails.controller';
+import { paymentService } from 'src/services/paymentdetails.service';
+import { Payment } from 'src/entitys/paymentdetails.entity';
 // import { EmailService } from 'src/email/email.service';
 // import { ConsultantService } from 'src/consultant/consultant.service';
 // import { MailerModule } from '@nestjs-modules/mailer';
@@ -22,6 +25,7 @@ import { AuthService } from './user.auth';
   imports: [
     TypeOrmModule.forFeature([
       User,
+      Payment,
       //   Consultant,
       //   Message,
       //   Schedule,
@@ -41,6 +45,7 @@ import { AuthService } from './user.auth';
   ],
   controllers: [
     UsersController,
+
     // ScheduleController,
     // ConsultantController,
     // ScholarshipController,

@@ -15,13 +15,15 @@ import { UsersService } from '../services/users.service';
 import { AuthService } from 'src/users/user.auth';
 import { LoginUserDto } from 'src/dtos/login-user.dto';
 import { UpdateDto } from 'src/dtos/update.dto';
+import { paymentService } from 'src/services/paymentdetails.service';
 
-@Controller('auth')
-export class UsersController {
+@Controller('payment')
+export class PaymentController {
   constructor(
     // private emailService: EmailService,
     private usersService: UsersService,
-    private authService: AuthService, // private messageService: MessageService,
+    private authService: AuthService,
+    private paymentService: paymentService, // private messageService: MessageService,
   ) {}
 
   @Post('/signup')
@@ -37,9 +39,9 @@ export class UsersController {
   }
   @Post('/signin')
   async signin(@Body() body: LoginUserDto, @Session() session: any) {
-    const user = await this.authService.signin(body.email, body.password);
+    const Payment = await this.authService.signin(body.email, body.password);
 
-    return user;
+    return Payment;
   }
   @Post('/:id')
   findUser(@Param('id') id: string) {
