@@ -5,13 +5,13 @@ export class Payment {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  name: string;
+  paymentway: string;
   @Column()
-  phone: string;
+  reference: string;
   @Column()
-  email: string;
+  amount: string;
   @Column()
-  password: string;
+  due: string;
   @Column()
-  companyName: string;
+  userId: string;
 }

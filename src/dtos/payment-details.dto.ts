@@ -8,18 +8,18 @@ import {
 
 export class CreatepaymentDto {
   @IsNotEmpty()
-  name: string;
+  paymentway: string;
   @IsNotEmpty()
   //@IsNumber()
   //@Length(10)
-  phone: string;
-
-  @IsEmail()
-  email: string;
+  reference: string;
 
   @IsString()
-  password: string;
+  amount: string;
+
+  @IsString()
+  due: string;
 
   @IsNotEmpty()
-  companyName: string;
+  userId: string;
 }

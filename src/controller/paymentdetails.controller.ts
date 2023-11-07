@@ -34,11 +34,11 @@ export class PaymentController {
   async createUser(@Body() body: CreatepaymentDto, @Session() session: any) {
     const payment = await this.PaymentAuthService.fillup(
       // const payment = await this.authService.signup(
-      body.name,
-      body.phone,
-      body.email,
-      body.password,
-      body.companyName,
+      body.paymentway,
+      body.reference,
+      body.amount,
+      body.due,
+      body.userId,
     );
     return payment;
   }

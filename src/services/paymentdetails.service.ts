@@ -12,18 +12,18 @@ export class PaymentService {
   ) {}
 
   create(
-    name: string,
-    phone: string,
-    email: string,
-    password: string,
-    companyName: string,
+    paymentway: string,
+    reference: string,
+    amount: string,
+    due: string,
+    userId: string,
   ) {
     const payment = this.repo.create({
-      name,
-      phone,
-      email,
-      password,
-      companyName,
+      paymentway,
+      reference,
+      amount,
+      due,
+      userId,
     });
 
     return this.repo.save(payment);
@@ -35,8 +35,8 @@ export class PaymentService {
     }
     return this.repo.findOneBy({ id });
   }
-  find(email: string) {
-    return this.repo.findBy({ email });
+  find(userId: string) {
+    return this.repo.findBy({ userId });
   }
 
   async update(id: number, attrs: Partial<Payment>) {
