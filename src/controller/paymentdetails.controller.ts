@@ -10,7 +10,7 @@ import {
   Session,
   ValidationPipe,
 } from '@nestjs/common';
-import { CreateUserDto } from 'src/dtos/create-user.dto';
+
 import { UsersService } from '../services/users.service';
 import { PaymentService } from 'src/services/paymentdetails.service';
 import { AuthService } from 'src/users/user.auth';
@@ -19,6 +19,7 @@ import { UpdateDto } from 'src/dtos/update.dto';
 import { CreatepaymentDto } from 'src/dtos/payment-details.dto';
 import { PaymentAuthService } from 'src/services/payment.auth';
 import { Payment } from 'src/entitys/paymentdetails.entity';
+import { updateDetailsDto } from 'src/dtos/update.dto';
 
 @Controller('payment')
 export class PaymentController {
@@ -53,13 +54,13 @@ export class PaymentController {
   //   return this.usersService.findOne(parseInt(id));
   // }
 
-  // @Delete('/:id')
-  // removeUser(@Param('id') id: string) {
-  //   return this.usersService.remove(parseInt(id));
-  // }
+  @Delete('/:id')
+  removeUser(@Param('id') id: string) {
+    return this.PaymentService.remove(parseInt(id));
+  }
 
-  // @Put('/:id')
-  // updateUser(@Param('id') id: string, @Body() body: UpdateDto) {
-  //   return this.usersService.update(parseInt(id), body);
-  // }
+  @Put('/:id')
+  updateUser(@Param('id') id: string, @Body() body: updateDetailsDto) {
+    return this.PaymentService.update(parseInt(id), body);
+  }
 }

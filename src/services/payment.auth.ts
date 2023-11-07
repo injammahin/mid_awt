@@ -9,24 +9,24 @@ import { PaymentService } from './paymentdetails.service';
 export class PaymentAuthService {
   constructor(private PaymentService: PaymentService) {}
   async fillup(
-    name: string,
-    phone: string,
-    email: string,
-    password: string,
-    companyName: string,
+    paymentway: string,
+    reference: string,
+    amount: string,
+    due: string,
+    userId: string,
   ) {
     // See if email is in use
-    const payments = await this.PaymentService.find(email);
+    const payments = await this.PaymentService.find(userId);
     if (payments.length) {
-      throw new BadRequestException('email already used');
+      throw new BadRequestException('userid already used');
     }
 
     const payment = await this.PaymentService.create(
-      name,
-      phone,
-      email,
-      password,
-      companyName,
+      paymentway,
+      reference,
+      amount,
+      due,
+      userId,
     );
     // throw new BadRequestException('data inserted');
     // throw new BadRequestException('data inserted');
