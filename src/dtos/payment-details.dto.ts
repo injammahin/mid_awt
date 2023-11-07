@@ -6,20 +6,20 @@ import {
   //Length,
 } from 'class-validator';
 
-export class CreateUserDto {
+export class CreatepaymentDto {
   @IsNotEmpty()
-  paymentWay: string;
+  name: string;
   @IsNotEmpty()
   //@IsNumber()
   //@Length(10)
-  reference: string;
+  phone: string;
 
   @IsEmail()
-  amount: string;
+  email: string;
 
   @IsString()
-  due: string;
+  password: string;
 
   @IsNotEmpty()
-  userId: string;
+  companyName: string;
 }

@@ -5,9 +5,11 @@ import { UsersService } from '../services/users.service';
 import { User } from '../entitys/user.entity';
 // import { Consultant } from '../consultant/consultant.entity';
 import { AuthService } from './user.auth';
-import { PaymentController } from 'src/controller/paymentdetails.controller';
-import { paymentService } from 'src/services/paymentdetails.service';
 import { Payment } from 'src/entitys/paymentdetails.entity';
+import { PaymentController } from 'src/controller/paymentdetails.controller';
+
+import { PaymentService } from 'src/services/paymentdetails.service';
+import { PaymentAuthService } from 'src/services/payment.auth';
 // import { EmailService } from 'src/email/email.service';
 // import { ConsultantService } from 'src/consultant/consultant.service';
 // import { MailerModule } from '@nestjs-modules/mailer';
@@ -45,6 +47,7 @@ import { Payment } from 'src/entitys/paymentdetails.entity';
   ],
   controllers: [
     UsersController,
+    PaymentController,
 
     // ScheduleController,
     // ConsultantController,
@@ -53,6 +56,8 @@ import { Payment } from 'src/entitys/paymentdetails.entity';
   providers: [
     UsersService,
     AuthService,
+    PaymentService,
+    PaymentAuthService,
     //   EmailService,
     //   ConsultantService,
     //   MessageService,
