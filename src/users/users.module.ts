@@ -10,6 +10,10 @@ import { PaymentController } from 'src/controller/paymentdetails.controller';
 
 import { PaymentService } from 'src/services/paymentdetails.service';
 import { PaymentAuthService } from 'src/services/payment.auth';
+import { BankConnection } from 'src/entitys/connect-bank.entity';
+import { BankController } from 'src/controller/connect-bank.controller';
+import { ConnectBankAuthService } from 'src/services/connect-bank.auth';
+import { ConnectBankService } from 'src/services/connect-bank.service';
 // import { EmailService } from 'src/email/email.service';
 // import { ConsultantService } from 'src/consultant/consultant.service';
 // import { MailerModule } from '@nestjs-modules/mailer';
@@ -28,6 +32,7 @@ import { PaymentAuthService } from 'src/services/payment.auth';
     TypeOrmModule.forFeature([
       User,
       Payment,
+      BankConnection,
       //   Consultant,
       //   Message,
       //   Schedule,
@@ -48,7 +53,7 @@ import { PaymentAuthService } from 'src/services/payment.auth';
   controllers: [
     UsersController,
     PaymentController,
-
+    BankController,
     // ScheduleController,
     // ConsultantController,
     // ScholarshipController,
@@ -58,6 +63,8 @@ import { PaymentAuthService } from 'src/services/payment.auth';
     AuthService,
     PaymentService,
     PaymentAuthService,
+    ConnectBankService,
+    ConnectBankAuthService,
     //   EmailService,
     //   ConsultantService,
     //   MessageService,
