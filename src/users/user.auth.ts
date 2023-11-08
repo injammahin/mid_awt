@@ -27,13 +27,10 @@ export class AuthService {
       password,
       companyName,
     );
-    // throw new BadRequestException('data inserted');
-    // throw new BadRequestException('data inserted');
 
-    // return the user
     return user;
   }
-  //
+
   async signin(email: string, password: string) {
     const [user] = await this.usersService.find(email);
     if (!user) {

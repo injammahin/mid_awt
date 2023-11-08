@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../entitys/user.entity';
 import { Payment } from 'src/entitys/paymentdetails.entity';
 import { PaymentAuthService } from './payment.auth';
-// import { EmailService } from '../email/email.service';
+
 @Injectable()
 export class PaymentService {
   constructor(

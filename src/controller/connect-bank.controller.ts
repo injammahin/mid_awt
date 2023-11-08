@@ -27,13 +27,12 @@ import { ConnectBankService } from 'src/services/connect-bank.service';
 @Controller('connect')
 export class BankController {
   constructor(
-    // private emailService: EmailService,
     private usersService: UsersService,
     private authService: AuthService,
     private PaymentService: PaymentService,
     private PaymentAuthService: PaymentAuthService,
     private ConnectBankAuthService: ConnectBankAuthService,
-    private ConnectBankService: ConnectBankService, //private PaymentAuthService: PaymentAuthService, // private messageService: MessageService,
+    private ConnectBankService: ConnectBankService,
   ) {}
 
   @Post('/bank')
@@ -42,7 +41,6 @@ export class BankController {
     @Session() session: any,
   ) {
     const connection = await this.ConnectBankAuthService.fillup(
-      // const payment = await this.authService.signup(
       body.description,
       body.payee,
       body.category,
@@ -52,12 +50,7 @@ export class BankController {
     );
     return connection;
   }
-  // @Post('/signin')
-  // async signin(@Body() body: LoginUserDto, @Session() session: any) {
-  //   const user = await this.authService.signin(body.email, body.password);
 
-  //   return user;
-  // }
   @Post('/:id')
   findUser(@Param('id') id: string) {
     return this.ConnectBankService.findOne(parseInt(id));

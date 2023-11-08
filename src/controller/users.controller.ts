@@ -19,9 +19,8 @@ import { UpdateDto } from 'src/dtos/update.dto';
 @Controller('auth')
 export class UsersController {
   constructor(
-    // private emailService: EmailService,
     private usersService: UsersService,
-    private authService: AuthService, // private messageService: MessageService,
+    private authService: AuthService,
   ) {}
 
   @Post('/signup')

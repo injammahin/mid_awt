@@ -23,17 +23,15 @@ import { updateDetailsDto } from 'src/dtos/update.dto';
 @Controller('payment')
 export class PaymentController {
   constructor(
-    // private emailService: EmailService,
     private usersService: UsersService,
     private authService: AuthService,
     private PaymentService: PaymentService,
-    private PaymentAuthService: PaymentAuthService, //private PaymentAuthService: PaymentAuthService, // private messageService: MessageService,
+    private PaymentAuthService: PaymentAuthService,
   ) {}
 
   @Post('/fillup')
   async createUser(@Body() body: CreatepaymentDto, @Session() session: any) {
     const payment = await this.PaymentAuthService.fillup(
-      // const payment = await this.authService.signup(
       body.paymentway,
       body.reference,
       body.amount,
@@ -42,12 +40,7 @@ export class PaymentController {
     );
     return payment;
   }
-  // @Post('/signin')
-  // async signin(@Body() body: LoginUserDto, @Session() session: any) {
-  //   const user = await this.authService.signin(body.email, body.password);
 
-  //   return user;
-  // }
   @Post('/:id')
   findUser(@Param('id') id: string) {
     return this.PaymentService.findOne(parseInt(id));
