@@ -7,19 +7,21 @@ import {
 } from 'class-validator';
 
 export class CreateBankConnectionDto {
-  @IsNotEmpty()
-  paymentway: string;
-  @IsNotEmpty()
+  @IsString()
+  description: string;
+  @IsString()
   //@IsNumber()
   //@Length(10)
-  reference: string;
+  payee: string;
 
   @IsString()
-  amount: string;
+  category: string;
 
   @IsString()
-  due: string;
+  spend: string;
 
+  @IsNotEmpty()
+  received: string;
   @IsNotEmpty()
   userId: string;
 }

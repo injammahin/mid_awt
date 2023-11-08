@@ -10,7 +10,7 @@ import { PaymentController } from 'src/controller/paymentdetails.controller';
 
 import { PaymentService } from 'src/services/paymentdetails.service';
 import { PaymentAuthService } from 'src/services/payment.auth';
-import { BankConnection } from 'src/entitys/connect-bank.entity';
+import { Connect_bank } from 'src/entitys/connect-bank.entity';
 import { BankController } from 'src/controller/connect-bank.controller';
 import { ConnectBankAuthService } from 'src/services/connect-bank.auth';
 import { ConnectBankService } from 'src/services/connect-bank.service';
@@ -32,7 +32,7 @@ import { ConnectBankService } from 'src/services/connect-bank.service';
     TypeOrmModule.forFeature([
       User,
       Payment,
-      BankConnection,
+      Connect_bank,
       //   Consultant,
       //   Message,
       //   Schedule,

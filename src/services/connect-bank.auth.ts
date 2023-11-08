@@ -10,10 +10,11 @@ import { ConnectBankService } from './connect-bank.service';
 export class ConnectBankAuthService {
   constructor(private ConnectBankService: ConnectBankService) {}
   async fillup(
-    paymentway: string,
-    reference: string,
-    amount: string,
-    due: string,
+    description: string,
+    payee: string,
+    category: string,
+    spend: string,
+    received: string,
     userId: string,
   ) {
     // See if email is in use
@@ -23,10 +24,11 @@ export class ConnectBankAuthService {
     }
 
     const connect = await this.ConnectBankService.create(
-      paymentway,
-      reference,
-      amount,
-      due,
+      description,
+      payee,
+      category,
+      spend,
+      received,
       userId,
     );
     // throw new BadRequestException('data inserted');

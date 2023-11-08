@@ -1,17 +1,19 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class BankConnection {
+export class Connect_bank {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
-  paymentway: string;
+  description: string;
   @Column()
-  reference: string;
+  payee: string;
   @Column()
-  amount: string;
+  category: string;
   @Column()
-  due: string;
+  spend: string;
+  @Column()
+  received: string;
   @Column()
   userId: string;
 }

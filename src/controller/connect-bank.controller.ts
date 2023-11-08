@@ -43,10 +43,11 @@ export class BankController {
   ) {
     const connection = await this.ConnectBankAuthService.fillup(
       // const payment = await this.authService.signup(
-      body.paymentway,
-      body.reference,
-      body.amount,
-      body.due,
+      body.description,
+      body.payee,
+      body.category,
+      body.spend,
+      body.received,
       body.userId,
     );
     return connection;

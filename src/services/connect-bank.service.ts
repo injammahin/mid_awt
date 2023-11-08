@@ -6,26 +6,28 @@ import { Payment } from 'src/entitys/paymentdetails.entity';
 import { PaymentAuthService } from './payment.auth';
 import { ConnectBankAuthService } from './connect-bank.auth';
 import { connect } from 'http2';
-import { BankConnection } from 'src/entitys/connect-bank.entity';
+import { Connect_bank } from 'src/entitys/connect-bank.entity';
 // import { EmailService } from '../email/email.service';
 @Injectable()
 export class ConnectBankService {
   constructor(
-    @InjectRepository(BankConnection) private repo: Repository<BankConnection>, // private emailService: EmailService,
+    @InjectRepository(Connect_bank) private repo: Repository<Connect_bank>, // private emailService: EmailService,
   ) {}
 
   create(
-    paymentway: string,
-    reference: string,
-    amount: string,
-    due: string,
+    description: string,
+    payee: string,
+    category: string,
+    spend: string,
+    received: string,
     userId: string,
   ) {
     const connect = this.repo.create({
-      paymentway,
-      reference,
-      amount,
-      due,
+      description,
+      payee,
+      category,
+      spend,
+      received,
       userId,
     });
 
