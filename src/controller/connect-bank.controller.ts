@@ -58,18 +58,18 @@ export class BankController {
 
   //   return user;
   // }
-  // @Post('/:id')
-  // findUser(@Param('id') id: string) {
-  //   return this.usersService.findOne(parseInt(id));
-  // }
+  @Post('/:id')
+  findUser(@Param('id') id: string) {
+    return this.ConnectBankService.findOne(parseInt(id));
+  }
 
-  // @Delete('/:id')
-  // removeUser(@Param('id') id: string) {
-  //   return this.ConnectBankService.remove(parseInt(id));
-  // }
+  @Delete('/:id')
+  removeUser(@Param('id') id: string) {
+    return this.ConnectBankService.remove(parseInt(id));
+  }
 
-  // @Put('/:id')
-  // updateUser(@Param('id') id: string, @Body() body: updateDetailsDto) {
-  //   return this.ConnectBankService.update(parseInt(id), body);
-  // }
+  @Put('/:id')
+  updateUser(@Param('id') id: string, @Body() body: updateDetailsDto) {
+    return this.ConnectBankService.update(parseInt(id), body);
+  }
 }
