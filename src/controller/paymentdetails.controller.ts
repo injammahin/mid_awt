@@ -6,7 +6,6 @@ import {
   Param,
   Post,
   Put,
-  Patch,
   Session,
   ValidationPipe,
 } from '@nestjs/common';
@@ -49,10 +48,10 @@ export class PaymentController {
 
   //   return user;
   // }
-  // @Post('/:id')
-  // findUser(@Param('id') id: string) {
-  //   return this.usersService.findOne(parseInt(id));
-  // }
+  @Post('/:id')
+  findUser(@Param('id') id: string) {
+    return this.PaymentService.findOne(parseInt(id));
+  }
 
   @Delete('/:id')
   removeUser(@Param('id') id: string) {
