@@ -29,7 +29,14 @@ export class UsersService {
     if (!id) {
       return null;
     }
-    return this.repo.findOneBy({ id });
+    return this.repo.find({
+      where: {
+        id: id,
+      },
+      relations: {
+        Connect_bank: true,
+      },
+    });
   }
   find(email: string) {
     return this.repo.findBy({ email });

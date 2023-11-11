@@ -51,6 +51,7 @@ export class UsersController {
     if (user != null) {
       const isMatch = await bcrypt.compare(body.password, user.password);
       if (isMatch) {
+        session.userId = user.id;
         return { message: 'login successfull' };
       } else {
         return { message: 'worng password' };
@@ -60,8 +61,6 @@ export class UsersController {
         message: 'wrong email',
       };
     }
-
-    session.userId = user.id;
 
     // return session.userId;
     // return 'login successful';
@@ -81,8 +80,8 @@ export class UsersController {
     if (!data) {
       return 'log in first';
     } else {
-      const { password, ...profileData } = data;
-      return profileData;
+      // const { password, ...profileData } = data;
+      return data;
     }
   }
 

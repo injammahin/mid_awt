@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Connect_bank } from './connect-bank.entity';
 
 @Entity()
 export class User {
@@ -14,4 +21,10 @@ export class User {
   password: string;
   @Column()
   companyName: string;
+
+  @OneToOne(() => Connect_bank, (Connect_bank) => Connect_bank.user, {
+    cascade: true,
+  })
+  @JoinColumn()
+  Connect_bank: Connect_bank;
 }
