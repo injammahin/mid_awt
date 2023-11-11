@@ -14,4 +14,6 @@ export class Payment {
   due: string;
   @Column()
   userId: string;
+  @Column()
+  paysliip: string;
 }

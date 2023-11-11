@@ -42,7 +42,7 @@ export class PaymentService {
   async update(id: number, attrs: Partial<Payment>) {
     const payment = await this.findOne(id);
     if (!payment) {
-      throw new NotFoundException('user not found');
+      throw new NotFoundException('Payment details not found');
     }
     Object.assign(payment, attrs);
     return this.repo.save(payment);
