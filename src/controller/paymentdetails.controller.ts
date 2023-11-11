@@ -10,6 +10,7 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Res,
   Session,
   UploadedFile,
   UseInterceptors,
@@ -87,10 +88,12 @@ export class PaymentController {
     @Param('id', ParseIntPipe) id: number,
     @Body() data,
   ): any {
-    console.log('====================================');
-    console.log(file);
     data.payslip = file.filename;
-    console.log('====================================');
     return this.PaymentService.update(id, data);
+  }
+  @Get('/getslip/:name')
+  // @UseGuards(SessionGuardP)
+  getSlip(@Param('name') name, @Res() res) {
+    res.sendFile(name, { root: './uploads/paymentDetails' });
   }
 }
