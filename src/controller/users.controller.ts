@@ -15,6 +15,7 @@ import { UsersService } from '../services/users.service';
 import { AuthService } from 'src/users/user.auth';
 import { LoginUserDto } from 'src/dtos/login-user.dto';
 import { UpdateDto } from 'src/dtos/update.dto';
+import { User } from 'src/entitys/user.entity';
 
 @Controller('auth')
 export class UsersController {
@@ -32,17 +33,35 @@ export class UsersController {
       body.password,
       body.companyName,
     );
+    session.userId = user.id;
     return user;
   }
   @Post('/signin')
   async signin(@Body() body: LoginUserDto, @Session() session: any) {
     const user = await this.authService.signin(body.email, body.password);
+    session.userId = user.id;
 
-    return user;
+    // return session.userId;
+    return 'login successful';
+  }
+  @Post('/signout')
+  logout(@Session() session: any) {
+    session.userId = null;
+    return 'sign out';
   }
   @Post('/:id')
   findUser(@Param('id') id: string) {
     return this.usersService.findOne(parseInt(id));
+  }
+  @Get('/profile')
+  async profile(@Session() session: any) {
+    const data = await this.usersService.findOne(session.userId);
+    if (!data) {
+      return 'log in first';
+    } else {
+      const { password, ...profileData } = data;
+      return profileData;
+    }
   }
 
   @Delete('/:id')

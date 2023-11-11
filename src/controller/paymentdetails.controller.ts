@@ -23,8 +23,8 @@ import { updateDetailsDto } from 'src/dtos/update.dto';
 @Controller('payment')
 export class PaymentController {
   constructor(
-    private usersService: UsersService,
-    private authService: AuthService,
+    // private usersService: UsersService,
+    // private authService: AuthService,
     private PaymentService: PaymentService,
     private PaymentAuthService: PaymentAuthService,
   ) {}
