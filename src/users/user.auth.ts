@@ -31,13 +31,10 @@ export class AuthService {
     return user;
   }
 
-  async signin(email: string, password: string) {
+  async signin(email: string) {
     const [user] = await this.usersService.find(email);
     if (!user) {
       throw new NotFoundException('user not found');
-    }
-    if (user.password !== password) {
-      throw new BadRequestException('wrong password');
     }
 
     return user;

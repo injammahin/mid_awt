@@ -16,6 +16,7 @@ import { AuthService } from 'src/users/user.auth';
 import { LoginUserDto } from 'src/dtos/login-user.dto';
 import { UpdateDto } from 'src/dtos/update.dto';
 import { User } from 'src/entitys/user.entity';
+import * as bcrypt from 'bcrypt';
 
 @Controller('auth')
 export class UsersController {
@@ -26,6 +27,11 @@ export class UsersController {
 
   @Post('/signup')
   async createUser(@Body() body: CreateUserDto, @Session() session: any) {
+    // password hashing
+    const salt = await bcrypt.genSalt();
+    const hashedPass = await bcrypt.hash(body.password, 10);
+    body.password = hashedPass;
+
     const user = await this.authService.signup(
       body.name,
       body.phone,
@@ -33,16 +39,32 @@ export class UsersController {
       body.password,
       body.companyName,
     );
-    session.userId = user.id;
+
+    // return 200;
+    // session.userId = user.id;
     return user;
   }
   @Post('/signin')
   async signin(@Body() body: LoginUserDto, @Session() session: any) {
-    const user = await this.authService.signin(body.email, body.password);
+    const salt = await bcrypt.genSalt();
+    const user = await this.authService.signin(body.email);
+    if (user != null) {
+      const isMatch = await bcrypt.compare(body.password, user.password);
+      if (isMatch) {
+        return { message: 'login successfull' };
+      } else {
+        return { message: 'worng password' };
+      }
+    } else {
+      return {
+        message: 'wrong email',
+      };
+    }
+
     session.userId = user.id;
 
     // return session.userId;
-    return 'login successful';
+    // return 'login successful';
   }
   @Post('/signout')
   logout(@Session() session: any) {
