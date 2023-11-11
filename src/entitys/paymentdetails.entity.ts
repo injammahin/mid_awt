@@ -14,6 +14,6 @@ export class Payment {
   due: string;
   @Column()
   userId: string;
-  @Column()
+  @Column({ default: null })
   paysliip: string;
 }
