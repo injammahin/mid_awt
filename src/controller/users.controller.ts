@@ -100,7 +100,7 @@ export class UsersController {
 
   @Get('set-cookie')
   findAll(@Res({ passthrough: true }) response: Response) {
-    response.cookie('key', 'value');
+    response.cookie('key', '1234');
     return ' Cookie set successfully';
   }
 }
