@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Res,
   Patch,
   Session,
   ValidationPipe,
@@ -17,6 +18,8 @@ import { LoginUserDto } from 'src/dtos/login-user.dto';
 import { UpdateDto } from 'src/dtos/update.dto';
 import { User } from 'src/entitys/user.entity';
 import * as bcrypt from 'bcrypt';
+import { Response } from 'express';
+import { Cookie } from 'express-session';
 
 @Controller('auth')
 export class UsersController {
@@ -93,5 +96,11 @@ export class UsersController {
   @Put('/:id')
   updateUser(@Param('id') id: string, @Body() body: UpdateDto) {
     return this.usersService.update(parseInt(id), body);
+  }
+
+  @Get('set-cookie')
+  findAll(@Res({ passthrough: true }) response: Response) {
+    response.cookie('key', 'value');
+    return ' Cookie set successfully';
   }
 }
