@@ -14,6 +14,8 @@ export class Payment {
   due: string;
   @Column()
   userId: string;
-  @Column({ default: null })
-  paysliip: string;
+  // @Column({ default: null })
+  // paysliip: string;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  paysliip: Date;
 }
