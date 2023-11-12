@@ -1,13 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../entitys/user.entity';
 import { Payment } from 'src/entitys/paymentdetails.entity';
-import { PaymentAuthService } from './payment.auth';
 import { ConnectBankAuthService } from './connect-bank.auth';
-import { connect } from 'http2';
 import { Connect_bank } from 'src/entitys/connect-bank.entity';
-// import { EmailService } from '../email/email.service';
+
 @Injectable()
 export class ConnectBankService {
   constructor(
