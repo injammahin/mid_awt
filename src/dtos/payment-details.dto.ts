@@ -19,7 +19,4 @@ export class CreatepaymentDto {
 
   @IsString()
   due: string;
-
-  @IsNotEmpty()
-  userId: string;
 }

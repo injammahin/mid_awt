@@ -44,7 +44,6 @@ export class PaymentController {
       body.reference,
       body.amount,
       body.due,
-      body.userId,
     );
     return payment;
   }
