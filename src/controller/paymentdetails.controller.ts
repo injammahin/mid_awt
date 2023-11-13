@@ -16,12 +16,7 @@ import {
   UseInterceptors,
   ValidationPipe,
 } from '@nestjs/common';
-
-import { UsersService } from '../services/users.service';
-import { PaymentService } from 'src/services/paymentdetails.service';
-import { AuthService } from 'src/users/user.auth';
-import { LoginUserDto } from 'src/dtos/login-user.dto';
-import { UpdateDto } from 'src/dtos/update.dto';
+import { PaymentService } from 'src/services/paymentdetails.service'
 import { CreatepaymentDto } from 'src/dtos/payment-details.dto';
 import { PaymentAuthService } from 'src/services/payment.auth';
 import { Payment } from 'src/entitys/paymentdetails.entity';
@@ -31,8 +26,7 @@ import multer, { diskStorage } from 'multer';
 @Controller('payment')
 export class PaymentController {
   constructor(
-    // private usersService: UsersService,
-    // private authService: AuthService,
+    
     private PaymentService: PaymentService,
     private PaymentAuthService: PaymentAuthService,
   ) {}
