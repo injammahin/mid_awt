@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity()
 export class Payment {
@@ -18,4 +19,6 @@ export class Payment {
   // paysliip: string;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   paysliip: Date;
+  @ManyToOne(() => User, (user) => user.Payments, { onDelete: 'SET NULL' })
+  users: User;
 }

@@ -3,9 +3,11 @@ import {
   Column,
   PrimaryGeneratedColumn,
   OneToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { Connect_bank } from './connect-bank.entity';
+import { Payment } from './paymentdetails.entity';
 
 @Entity()
 export class User {
@@ -27,4 +29,7 @@ export class User {
   })
   @JoinColumn()
   Connect_bank: Connect_bank;
+
+  @OneToMany(() => Payment, (Payment) => Payment.users)
+  Payments: Payment[];
 }
