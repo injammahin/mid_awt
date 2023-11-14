@@ -7,9 +7,20 @@ import { Connect_bank } from 'src/entitys/connect-bank.entity';
 
 @Injectable()
 export class ConnectBankService {
+  /////
+  private readonly Connect_bank: Repository<Connect_bank>;
+  // async findAll(): Promise<Connect_bank[]> {
+  //   return this.Connect_bank.find();
+  // }
+
   constructor(
     @InjectRepository(Connect_bank) private repo: Repository<Connect_bank>, // private emailService: EmailService,
-  ) {}
+  ) {
+    this.Connect_bank = repo; // Initialize yourEntityRepository here
+  }
+  async findAll(): Promise<Connect_bank[]> {
+    return this.Connect_bank.find();
+  }
 
   create(
     description: string,

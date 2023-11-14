@@ -13,10 +13,18 @@ import { Connect_bank } from 'src/entitys/connect-bank.entity';
 import { BankController } from 'src/controller/connect-bank.controller';
 import { ConnectBankAuthService } from 'src/services/connect-bank.auth';
 import { ConnectBankService } from 'src/services/connect-bank.service';
+/////pdf
+import { PdfController } from 'src/pdf/pdf.controller';
+import { PdfService } from 'src/pdf/pdf.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, Payment, Connect_bank])],
-  controllers: [UsersController, PaymentController, BankController],
+  controllers: [
+    UsersController,
+    PaymentController,
+    BankController,
+    PdfController,
+  ],
   providers: [
     UsersService,
     AuthService,
@@ -24,6 +32,7 @@ import { ConnectBankService } from 'src/services/connect-bank.service';
     PaymentAuthService,
     ConnectBankService,
     ConnectBankAuthService,
+    PdfService,
   ],
 })
 export class UsersModule {}
