@@ -14,8 +14,6 @@ export class Payment {
   @Column()
   due: string;
 
-  // @Column({ default: null })
-  // paysliip: string;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   paysliip: Date;
   @ManyToOne(() => User, (user) => user.Payments, { onDelete: 'SET NULL' })

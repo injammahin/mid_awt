@@ -13,11 +13,6 @@ export class PaymentAuthService {
     amount: string,
     due: string,
   ) {
-    // const payments = await this.PaymentService.find(userId);
-    // if (payments.length) {
-    //   throw new BadRequestException('userid already used');
-    // }
-
     const payment = await this.PaymentService.create(
       paymentway,
       reference,

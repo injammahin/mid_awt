@@ -5,8 +5,7 @@ import { Client } from 'pg';
 @Injectable()
 export class ExcelService {
   async generateExcel(): Promise<Uint8Array> {
-    // Fetch your data from the PostgreSQL database
-    const data = await this.fetchDataFromDatabase();
+    const data = await this.fetchDataFromDatabase(); // Fetch your data from the PostgreSQL database
 
     // Create a worksheet
     const ws = XLSX.utils.json_to_sheet(data);

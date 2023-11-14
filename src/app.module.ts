@@ -4,11 +4,8 @@ import { AppController } from './controller/app.controller';
 import { AppService } from './services/app.service';
 
 import { UsersModule } from './users/users.module';
-// import { UsersController } from './registration/users.controller';
-// import { UsersService } from './registration/users.service';
+
 import { User } from './entitys/user.entity';
-// import { PaymentController } from './controller/paymentdetails.controller';
-// import { paymentService } from './services/paymentdetails.service';
 
 @Module({
   imports: [

@@ -16,17 +16,15 @@ import {
   UseInterceptors,
   ValidationPipe,
 } from '@nestjs/common';
-import { PaymentService } from 'src/services/paymentdetails.service'
+import { PaymentService } from 'src/services/paymentdetails.service';
 import { CreatepaymentDto } from 'src/dtos/payment-details.dto';
 import { PaymentAuthService } from 'src/services/payment.auth';
-import { Payment } from 'src/entitys/paymentdetails.entity';
 import { updateDetailsDto } from 'src/dtos/update.dto';
 import { FileInterceptor } from '@nestjs/platform-express/multer';
 import multer, { diskStorage } from 'multer';
 @Controller('payment')
 export class PaymentController {
   constructor(
-    
     private PaymentService: PaymentService,
     private PaymentAuthService: PaymentAuthService,
   ) {}

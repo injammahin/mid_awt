@@ -1,9 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../entitys/user.entity';
+
 import { Payment } from 'src/entitys/paymentdetails.entity';
-import { PaymentAuthService } from './payment.auth';
 
 @Injectable()
 export class PaymentService {
@@ -28,9 +27,6 @@ export class PaymentService {
     }
     return this.repo.findOneBy({ id });
   }
-  // find(userId: string) {
-  //   return this.repo.findBy({ userId });
-  // }
 
   async update(id: number, attrs: Partial<Payment>) {
     const payment = await this.findOne(id);

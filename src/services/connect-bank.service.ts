@@ -9,14 +9,11 @@ import { Connect_bank } from 'src/entitys/connect-bank.entity';
 export class ConnectBankService {
   /////
   private readonly Connect_bank: Repository<Connect_bank>;
-  // async findAll(): Promise<Connect_bank[]> {
-  //   return this.Connect_bank.find();
-  // }
 
   constructor(
-    @InjectRepository(Connect_bank) private repo: Repository<Connect_bank>, // private emailService: EmailService,
+    @InjectRepository(Connect_bank) private repo: Repository<Connect_bank>,
   ) {
-    this.Connect_bank = repo; // Initialize yourEntityRepository here
+    this.Connect_bank = repo;
   }
   async findAll(): Promise<Connect_bank[]> {
     return this.Connect_bank.find();

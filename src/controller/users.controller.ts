@@ -55,23 +55,6 @@ export class UsersController {
     // Handle specific errors if needed
     throw error;
   }
-  // @Post('/signin')
-  // async signin(@Body() body: LoginUserDto, @Session() session: any) {
-  //   const salt = await bcrypt.genSalt();
-  //   const user = await this.authService.signin(body.email);
-  //   if (user != null) {
-  //     const isMatch = await bcrypt.compare(body.password, user.password);
-  //     if (isMatch) {
-  //       session.userId = user.id;
-  //       return { message: 'login successfull' };
-  //     } else {
-  //       return { message: 'worng password' };
-  //     }
-  //   } else {
-  //     return {
-  //       message: 'wrong email address',
-  //     };
-  //   }
 
   @Post('signin')
   async signIn(
@@ -92,9 +75,6 @@ export class UsersController {
     } catch (error) {
       throw error;
     }
-
-    // return session.userId;
-    // return 'login successful';
   }
   @Post('/signout')
   logout(@Session() session: any) {

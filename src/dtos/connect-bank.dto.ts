@@ -1,17 +1,9 @@
-import {
-  IsEmail,
-  IsNotEmpty,
-  //IsNumber,
-  IsString,
-  //Length,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateBankConnectionDto {
   @IsString()
   description: string;
   @IsString()
-  //@IsNumber()
-  //@Length(10)
   payee: string;
 
   @IsString()
