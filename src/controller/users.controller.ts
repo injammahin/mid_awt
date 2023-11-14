@@ -19,7 +19,7 @@ import { UpdateDto } from 'src/dtos/update.dto';
 import { User } from 'src/entitys/user.entity';
 import * as bcrypt from 'bcrypt';
 import { Response } from 'express';
-import { Cookie } from 'express-session';
+import session, { Cookie } from 'express-session';
 
 @Controller('auth')
 export class UsersController {
@@ -45,24 +45,52 @@ export class UsersController {
 
     // return 200;
     // session.userId = user.id;
-    return user;
+    return {
+      user: user.user,
+      token: user.token,
+      message: 'Signup successful',
+    };
   }
-  @Post('/signin')
-  async signin(@Body() body: LoginUserDto, @Session() session: any) {
-    const salt = await bcrypt.genSalt();
-    const user = await this.authService.signin(body.email);
-    if (user != null) {
-      const isMatch = await bcrypt.compare(body.password, user.password);
-      if (isMatch) {
-        session.userId = user.id;
-        return { message: 'login successfull' };
-      } else {
-        return { message: 'worng password' };
-      }
-    } else {
+  catch(error) {
+    // Handle specific errors if needed
+    throw error;
+  }
+  // @Post('/signin')
+  // async signin(@Body() body: LoginUserDto, @Session() session: any) {
+  //   const salt = await bcrypt.genSalt();
+  //   const user = await this.authService.signin(body.email);
+  //   if (user != null) {
+  //     const isMatch = await bcrypt.compare(body.password, user.password);
+  //     if (isMatch) {
+  //       session.userId = user.id;
+  //       return { message: 'login successfull' };
+  //     } else {
+  //       return { message: 'worng password' };
+  //     }
+  //   } else {
+  //     return {
+  //       message: 'wrong email address',
+  //     };
+  //   }
+
+  @Post('signin')
+  async signIn(
+    @Session() session,
+    @Body(ValidationPipe)
+    { email, password }: { email: string; password: string },
+  ) {
+    try {
+      const result = await this.authService.signin(email);
+      // console.log('result', JSON.stringify(result.user, null, 2));
+      session.userId = result.user.id;
       return {
-        message: 'wrong email',
+        user: result.user,
+        token: result.token,
+        message: 'Signin successful',
       };
+      // session.userId = user.id;
+    } catch (error) {
+      throw error;
     }
 
     // return session.userId;

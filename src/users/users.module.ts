@@ -19,9 +19,18 @@ import { PdfService } from 'src/pdf/pdf.service';
 /////excel
 import { ExcelController } from 'src/excel/xcel.controller';
 import { ExcelService } from 'src/excel/excel.controller';
+///jwt
+import { JwtModule } from '@nestjs/jwt';
+import { JwtStrategy } from 'src/JWT/jwt.strategy';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Payment, Connect_bank])],
+  imports: [
+    TypeOrmModule.forFeature([User, Payment, Connect_bank]),
+    JwtModule.register({
+      secret: 'your-secret-key',
+      signOptions: { expiresIn: '1h' },
+    }),
+  ],
   controllers: [
     UsersController,
     PaymentController,
@@ -38,6 +47,9 @@ import { ExcelService } from 'src/excel/excel.controller';
     ConnectBankAuthService,
     PdfService,
     ExcelService,
+    ////
+    AuthService,
+    JwtStrategy,
   ],
 })
 export class UsersModule {}

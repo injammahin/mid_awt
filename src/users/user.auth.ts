@@ -1,12 +1,20 @@
+// auth.service.ts
 import {
   Injectable,
   BadRequestException,
   NotFoundException,
 } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService,
+  ) {}
+
   async signup(
     name: string,
     phone: string,
@@ -17,7 +25,7 @@ export class AuthService {
     // See if email is in use
     const users = await this.usersService.find(email);
     if (users.length) {
-      throw new BadRequestException('email already used');
+      throw new BadRequestException('Email already used');
     }
 
     const user = await this.usersService.create(
@@ -28,15 +36,38 @@ export class AuthService {
       companyName,
     );
 
-    return user;
+    // Generate JWT token after successful signup
+    const token = this.jwtService.sign({ sub: user.id, email: user.email });
+    return { user, token };
   }
 
   async signin(email: string) {
-    const [user] = await this.usersService.find(email);
-    if (!user) {
-      throw new NotFoundException('user not found');
-    }
+    try {
+      const [user] = await this.usersService.find(email);
 
+      if (!user) {
+        throw new NotFoundException('User not found');
+      }
+
+      // Check if user.password exists before comparing
+      if (!user.password) {
+        throw new BadRequestException('Invalid user object');
+      }
+
+      // Generate JWT token after successful signin
+      const token = this.jwtService.sign({ sub: user.id, email: user.email });
+      return { user, token };
+    } catch (error) {
+      throw error; // Rethrow the error if it's not related to user not found
+    }
+  }
+
+  async validateUser(payload: any) {
+    // You can add additional validation logic here if needed
+    const user = await this.usersService.findOne(payload.sub);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
     return user;
   }
 }
