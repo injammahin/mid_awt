@@ -16,6 +16,9 @@ import { ConnectBankService } from 'src/services/connect-bank.service';
 /////pdf
 import { PdfController } from 'src/pdf/pdf.controller';
 import { PdfService } from 'src/pdf/pdf.service';
+/////excel
+import { ExcelController } from 'src/excel/xcel.controller';
+import { ExcelService } from 'src/excel/excel.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, Payment, Connect_bank])],
@@ -24,6 +27,7 @@ import { PdfService } from 'src/pdf/pdf.service';
     PaymentController,
     BankController,
     PdfController,
+    ExcelController,
   ],
   providers: [
     UsersService,
@@ -33,6 +37,7 @@ import { PdfService } from 'src/pdf/pdf.service';
     ConnectBankService,
     ConnectBankAuthService,
     PdfService,
+    ExcelService,
   ],
 })
 export class UsersModule {}
