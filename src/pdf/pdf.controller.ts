@@ -2,7 +2,8 @@
 import { Controller, Get, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { PdfService } from './pdf.service';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('download pdf')
 @Controller('pdf')
 export class PdfController {
   constructor(private readonly pdfService: PdfService) {}

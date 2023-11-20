@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as XLSX from 'xlsx';
 import { Client } from 'pg';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('download excel')
 @Injectable()
 export class ExcelService {
   async generateExcel(): Promise<Uint8Array> {

@@ -17,7 +17,8 @@ import { updateDetailsDto } from 'src/dtos/update.dto';
 import { CreateBankConnectionDto } from 'src/dtos/connect-bank.dto';
 import { ConnectBankAuthService } from 'src/services/connect-bank.auth';
 import { ConnectBankService } from 'src/services/connect-bank.service';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('bank reconcilation')
 @Controller('connect')
 export class BankController {
   constructor(

@@ -22,6 +22,8 @@ import { PaymentAuthService } from 'src/services/payment.auth';
 import { updateDetailsDto } from 'src/dtos/update.dto';
 import { FileInterceptor } from '@nestjs/platform-express/multer';
 import multer, { diskStorage } from 'multer';
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('accept payment')
 @Controller('payment')
 export class PaymentController {
   constructor(

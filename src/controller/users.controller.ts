@@ -20,7 +20,8 @@ import { User } from 'src/entitys/user.entity';
 import * as bcrypt from 'bcrypt';
 import { Response } from 'express';
 import session, { Cookie } from 'express-session';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('auth')
 @Controller('auth')
 export class UsersController {
   constructor(
