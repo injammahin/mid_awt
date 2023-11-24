@@ -41,7 +41,7 @@ export class AuthService {
     return { user, token };
   }
 
-  async signin(email: string) {
+  async signin(email: string, password: string) {
     try {
       const [user] = await this.usersService.find(email);
 
@@ -54,6 +54,13 @@ export class AuthService {
         throw new BadRequestException('Invalid user object');
       }
 
+      // Compare the provided password with the hashed password in the database
+      const passwordMatch = await bcrypt.compare(password, user.password);
+
+      if (!passwordMatch) {
+        throw new BadRequestException('Invalid password');
+      }
+
       // Generate JWT token after successful signin
       const token = this.jwtService.sign({ sub: user.id, email: user.email });
       return { user, token };
@@ -61,7 +68,6 @@ export class AuthService {
       throw error; // Rethrow the error if it's not related to user not found
     }
   }
-
   async validateUser(payload: any) {
     // You can add additional validation logic here if needed
     const user = await this.usersService.findOne(payload.sub);

@@ -64,7 +64,7 @@ export class UsersController {
     { email, password }: { email: string; password: string },
   ) {
     try {
-      const result = await this.authService.signin(email);
+      const result = await this.authService.signin(email, password);
       // console.log('result', JSON.stringify(result.user, null, 2));
       session.userId = result.user.id;
       return {
