@@ -3,12 +3,12 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   Post,
   Put,
   Session,
 } from '@nestjs/common';
-
 import { UsersService } from '../services/users.service';
 import { PaymentService } from 'src/services/paymentdetails.service';
 import { AuthService } from 'src/users/user.auth';
@@ -18,6 +18,7 @@ import { CreateBankConnectionDto } from 'src/dtos/connect-bank.dto';
 import { ConnectBankAuthService } from 'src/services/connect-bank.auth';
 import { ConnectBankService } from 'src/services/connect-bank.service';
 import { ApiTags } from '@nestjs/swagger';
+
 @ApiTags('bank reconcilation')
 @Controller('connect')
 export class BankController {
@@ -42,9 +43,13 @@ export class BankController {
     return connection;
   }
 
-  @Post('/:id')
-  findUser(@Param('id') id: string) {
-    return this.ConnectBankService.findOne(parseInt(id));
+  @Get('/:id')
+  async findUser(@Param('id') id: string) {
+    const user = await this.ConnectBankService.findOne(parseInt(id));
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
   }
 
   @Delete('/:id')
